@@ -1,6 +1,6 @@
 {
   "name": "AngularJS_simple_billing_app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Sergey Narozhnyy",
   "dependencies": {
     "angular": "^1.5.8",
