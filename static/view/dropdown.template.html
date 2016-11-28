@@ -1,0 +1,15 @@
+<div class="input dropdown" ng-class="{ 'opened': dropCtrl.droped, 'w': dropCtrl.content === 'paymentTypes', 'm': dropCtrl.content === 'currencyOptions' }">
+	<ul class="list dropdown__visible">
+		<li ng-click="dropCtrl.toggleDrop()">
+			<i class="dropdown__caret" ng-class="{ 'down':  dropCtrl.droped }"></i>
+			<div class="dropdown__image dropdown__image_type_main" ng-class="dropCtrl.activeClass" ng-if="dropCtrl.activeClass"></div>
+			<div class="dropdown__active">{{dropCtrl.model}}</div>
+		</li>
+	</ul>
+	<ul class="list dropdown__inner" ng-show="dropCtrl.droped">
+		<li ng-repeat="r in dropCtrl.rest" ng-click="dropCtrl.recalcData(dropCtrl.content, r.name)" class="dropdown__element">
+			<div class="dropdown__image" ng-class="r.class" ng-if="r.class"></div>
+			<span ng-bind="r.name"></span>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,9 @@
+<ul class="list bonus-list">
+	<li ng-repeat="b in bonusCtrl.bonuses" ng-click="bonusCtrl.confirmBonus(b.sum)" class="bonus-list__item" ng-class="{ 'active': b.active }">
+		<span class="bonus-list__item__radio"></span>
+		<span>{{ b.sum | currency:bonusCtrl.onUpdate():false }} +</span>
+		<span class="bonus-list__item__bonus">{{ ::b.bonus }}% BONUS =</span>
+		<span ng-bind="b.total | currency:bonusCtrl.onUpdate():false"></span>
+		<span class="bonus-list__item__vip" ng-show="b.vip"></span>
+	</li>
+</ul>

@@ -1,0 +1,17 @@
+<div class="body__wrapper">
+	<div class="body__wrapper__element body__wrapper__element_type_aca amount">
+		<label>AMOUNT</label>
+		<input type="text" ng-model="main.amount" class="input amount-data" ng-change="main.amountChange()" autofocus />
+	</div>
+	<div class="body__wrapper__element body__wrapper__element_type_aca currency">
+		<label>CURRENCY</label>
+		<drop-list content="currencyOptions" ng-model="main.currency"></drop-list>
+	</div>
+	<div class="body__wrapper__element body__wrapper__element_type_acab checkbox">
+		<label>
+			<div class="checkbox__bar" ng-class="{ 'checked': main.bonusChecked }" ng-click="main.toggleBonus()"></div>
+			Apply bonus<br/>(<a href="javascript:void(0)">Terms & Conditions</a>)
+		</label>		
+	</div>
+</div>
+<bonus-list amount="main.amount" on-update="main.getCurrencySign()"></bonus-list>

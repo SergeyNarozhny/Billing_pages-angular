@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/static/bundle.css">
+	<script>
+		!function() {
+			"use strict";
+			var t = function() {
+				var t = navigator.userAgent;
+				return !window.addEventListener
+						|| t.match(/(Android (2|3|4.0|4.1|4.2|4.3))|(Opera (Mini|Mobi))/)
+						&& !t.match(/Chrome/)
+			},
+			s = function(t, s) {
+				var e = {};
+				try {
+					e = localStorage || {}
+				}
+				catch (o) {}
+				var a = "font-" + t,
+					n = a + "url",
+					f = a + "css",
+					r = e[n],
+					c = e[f],
+					i = document.createElement("style");
+				if (i.rel = "stylesheet", document.head.appendChild(i), c && r === s)
+					i.textContent = c;
+				else {
+					var b = new XMLHttpRequest;
+					b.open("GET", s);
+					b.onload = function() {
+						b.status >= 200 && b.status < 400 && (e[n] = s, e[f] = i.textContent = b.responseText)
+					};
+					b.send();
+				}
+			};
+			t ? s("RobotoWoff", "https://iqoption.com/assets/fonts/base64/roboto_family_woff.css")
+				: s("RobotoTtf", "https://iqoption.com/assets/fonts/base64/roboto_family_ttf.css")
+		}();
+	</script>
+    <script src="/static/bundle.js" async></script>
+	<title>AngularJS simple app</title>
+</head>
+
+	<body ng-app="bill" class="body" ng-controller="main as main" ng-cloak>
+		<a class="backer" href="#/" ng-if="main.omitBacker">&lt;</a>
+		<h1 class="title title_level_1 title_type_up">Choose Deposit Amount</h1>
+		<h1 class="title title_level_3 title_type_up">Make your first deposit and start trading for real</h1>
+		<div class="body__wrapper body__wrapper_type_upper">
+			<div ng-view class="body__wrapper__element body__wrapper__element_type_left"></div>
+			<div class="body__wrapper__element body__wrapper__element_type_right">
+				<ul class="list status">
+					<li class="status__item" ng-class="{ 'status__item_type_w': main.omitBacker }">
+						<span class="status__item__num">1</span>
+						<div class="status__item__descr status__item__descr_wp status__item__descr_type_w">Amount due {{main.amount || 0 | currency:main.getCurrencySign():false}}</div>
+						<div class="status__item__descr status__item__descr_wp status__item__descr_type_bonus" ng-show="main.bonusChecked">{{main.getActiveBonus('bonus') || 0}}% bonus + {{main.getActiveBonus('diff') || 0 | currency:main.getCurrencySign():false}}</div>
+					</li>
+					<li class="status__item" ng-class="{ 'status__item_type_w': main.omitBacker }">
+						<span class="status__item__num">2</span>
+						<div class="status__item__descr status__item__descr_wp">Payment type</div>
+					</li>
+					<li class="status__item" ng-class="{ 'status__item_type_w': main.omitBacker }">
+						<span class="status__item__num">3</span>
+						<div class="status__item__descr status__item__descr_wp">You receive {{main.getActiveBonus('total') || 0 | currency:main.getCurrencySign():false}}</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="body__wrapper">
+			<div class="body__wrapper__element body__wrapper__element_type_left logos">&nbsp;</div>
+			<div class="body__wrapper__element body__wrapper__element_type_right">
+				<a href="#/pay/" class="button button_type_green" ng-class="{ 'pay': main.omitBacker }">
+					<span ng-show="!main.omitBacker">Continue&ensp;&gt;</span>
+					<span ng-show="main.omitBacker">Pay&nbsp;{{main.amount || 0 | currency:main.getCurrencySign():false}}</span>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
