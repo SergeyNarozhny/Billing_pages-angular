@@ -2,3 +2,5 @@ bootstrap*.css
 node_modules/
 bundle.js
 bundle.css
+webpack.config.js
+
